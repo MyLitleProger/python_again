@@ -56,9 +56,9 @@ def test_is_prime_2():
 while True:
     try:
         number = int(input('Enter a number: '))
-        if 0 < number < 1000:
+        if 0 < number < 100_000:
             break
-        else: print('Write a numbers (0..1000)')
+        else: print('Write a numbers (0..100.000)')
     except ValueError:
         print('Write only numbers!')
 
