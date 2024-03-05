@@ -1,11 +1,10 @@
 # Напишите код, который запрашивает число и сообщает, является ли оно простым или составным.
 # Используйте правило для проверки: “Число является простым, если делится нацело только на единицу и на себя”.
 # Сделайте ограничение на ввод отрицательных чисел и чисел больше 100 тысяч.
-import math
 
 
 # example 1
-def is_prime_1(number):
+def is_prime(number):
     '''checking a number is prime or not
     :param number: number to check
     :return: True if number is prime, False if not
@@ -23,46 +22,21 @@ def is_prime_1(number):
 
 
 # testing example 1
-def test_is_prime_1():
-    assert is_prime_1(1) == False
-    assert is_prime_1(2) == True
-    assert is_prime_1(3) == True
-    assert is_prime_1(4) == False
-    assert is_prime_1(5) == True
-    assert is_prime_1(6) == False
-    assert is_prime_1(7) == True
-    assert is_prime_1(8) == False
-    assert is_prime_1(9) == False
-    assert is_prime_1(10) == False
+def test_is_prime():
+    assert is_prime(1) == False
+    assert is_prime(2) == True
+    assert is_prime(3) == True
+    assert is_prime(4) == False
+    assert is_prime(5) == True
+    assert is_prime(6) == False
+    assert is_prime(7) == True
+    assert is_prime(8) == False
+    assert is_prime(9) == False
+    assert is_prime(10) == False
 
 
-test_is_prime_1()
+test_is_prime()
 
-
-# example 2
-def is_prime_2(num):
-    '''checking a number is prime or not with math module
-    :param num: number to check
-    :return: True if number is prime, False if not
-    '''
-    return math.is_prime(num)
-
-
-# testing example 2
-def test_is_prime_2():
-    assert is_prime_2(1) == False
-    assert is_prime_2(2) == True
-    assert is_prime_2(3) == True
-    assert is_prime_2(4) == False
-    assert is_prime_2(5) == True
-    assert is_prime_2(6) == False
-    assert is_prime_2(7) == True
-    assert is_prime_2(8) == False
-    assert is_prime_2(9) == False
-    assert is_prime_2(10) == False
-
-
-test_is_prime_2()
 
 # user testing
 while True:
@@ -75,12 +49,7 @@ while True:
     except ValueError:
         print('Write only numbers!')
 
-if is_prime_1(number):
-    print('This number is prime!')
-else:
-    print('This number is not prime!')
-
-if is_prime_2(number):
+if is_prime(number):
     print('This number is prime!')
 else:
     print('This number is not prime!')
