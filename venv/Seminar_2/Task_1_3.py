@@ -7,11 +7,20 @@
 # - Избегайте магических чисел;
 # - Добавьте аннотацию типов, где это возможно.
 
-num = int(input('Введите целое число: '))
+while True:
+    try:
+        num = int(input('Введите целое число: '))
+        break
+    except ValueError:
+        print('Введите целое число типа int')
 
 
-# Функция преобразования числа в двоичный код
 def n_bin(*args):
+    """
+    Преобразует число в двоичный код
+    :param args: Число типа int
+    :return: Двоичный код
+    """
     result: str = ''
     _num: int = args[0]
     while _num > 0:
@@ -20,8 +29,12 @@ def n_bin(*args):
     return result
 
 
-# Функция преобразования числа в восьмеричный код
 def n_oct(*args):
+    """
+    Преобразует число в восьмеричный код
+    :param args: Число типа int
+    :return: Восьмеричный код
+    """
     result: str = ''
     _num: int = args[0]
     while _num > 0:
