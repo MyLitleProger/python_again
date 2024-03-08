@@ -25,7 +25,12 @@ def circle_perimeter(*args):
     return 2 * decimal.Decimal(math.pi) * radius
 
 
-diameter = int(input('Введите диаметр круга: '))
+while True:
+    try:
+        diameter = int(input('Введите диаметр круга: '))
+        break
+    except ValueError:
+        print('Введите целое число типа int')
 
 print('Площадь круга: ', circle_area(diameter))
 print('Длина окружности: ', circle_perimeter(diameter))
