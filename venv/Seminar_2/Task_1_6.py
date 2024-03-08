@@ -115,7 +115,7 @@ if __name__ == '__main__':
                     print('Enter amount:')
                     amount = input()
                     amount = decimal.Decimal(amount)
-                    if amount < MIN_DEPOSIT:
+                    if amount < MIN_DEPOSIT or amount % 50 != 0:
                         print('Amount must be greater than 50')
                         break
                     else:
@@ -130,7 +130,7 @@ if __name__ == '__main__':
                     print('Enter amount:')
                     amount = input()
                     amount = decimal.Decimal(amount)
-                    if account - amount < MIN_ACCOUNT:
+                    if account - amount < MIN_ACCOUNT or amount % 50 != 0:
                         print('Insufficient funds')
                         break
                     elif amount < MIN_WITHDRAW_FEE:
