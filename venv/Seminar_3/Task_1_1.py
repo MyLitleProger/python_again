@@ -19,6 +19,3 @@ for i in data:
         new_data.append(i)
 print(data)
 print(new_data)
-
-# Задание 2.
-# Выполните поиск самого длинного повторяющегося подпорядка в массиве.
