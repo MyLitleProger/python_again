@@ -26,4 +26,4 @@ def guess_number(lower_bound=1, upper_bound=10, attempts=3):
 
 
 if __name__ == "__main__":
-    guess_number(1, 10, 3)
+    print(guess_number())
