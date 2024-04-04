@@ -6,7 +6,7 @@
 import random
 
 
-def guess_the_number(question, answers, attempts):
+def riddle(question, answers, attempts=3):
     for i in range(attempts):
         print(f"{i + 1} attempt")
         print(question)
@@ -23,4 +23,4 @@ if __name__ == "__main__":
     question = "What is the capital of Russia?"
     answers = ["Moscow", "Москва", "МСК", "MSC"]
     attempts = 3
-    print(guess_the_number(question, answers, attempts))
+    print(riddle(question, answers, attempts))
