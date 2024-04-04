@@ -8,7 +8,8 @@
 
 from random import randint
 
-def guess_number(lower_bound, upper_bound, attempts):
+
+def guess_number(lower_bound=1, upper_bound=10, attempts=3):
     number = randint(lower_bound, upper_bound)
     for i in range(attempts):
         print(f"Try to guess the number from {lower_bound} to {upper_bound}")
