@@ -22,4 +22,3 @@ def sort_files(path):
 
 if __name__ == '__main__':
     sort_files('C:/Users/user/Desktop/Seminar_8/Task_1_1')
-    
