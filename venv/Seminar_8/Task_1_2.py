@@ -9,14 +9,14 @@
 Пример:
 
 {
-    "1": {
-        "name": "John",
-        "access_level": 1
-    },
-    "2": {
-        "name": "Jane",
-        "access_level": 2
-    }
+    "id": 1,
+    "name": "John",
+    "access_level": 1
+},
+{
+    "id": 2,
+    "name": "Jane",
+    "access_level": 2
 }
 """
 
@@ -49,7 +49,7 @@ def set_users(file: Path) -> None:
             print('This id is already taken')
             continue
 
-        users[_id] = {'name': _name, 'access_level': _access_level}
+        users = {'id': _id, 'name': _name, 'access_level': _access_level}
 
         with open(file, 'w', encoding='utf-8') as f:
             json.dump(users, f)
