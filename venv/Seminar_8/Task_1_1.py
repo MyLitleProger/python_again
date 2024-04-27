@@ -1,24 +1,21 @@
-# Создайте функцию для сортировки файлов по директориям: видео, изображения, текст и т.д.
-# Каждая группа включает файлы с несколькими расширениями.
-# В исходной папке должны остатться только те файлы, которые не подошли для сортировки.
+# Вспомните задачу 3 из прошлого семинара. Мы сформированли текстовый файл с псевдо именами и произведением чисел.
+# Напишите функцию, которая создает из созданного ранее файла новый с данными в формате JSON.
+# Имена пишите с большой буквы.
+# Каждую пару сохраняйте с новой строки.
 
-from os import chdir
+import json
 from pathlib import Path
 
 
-def sort_files(path):
-    chdir(path)
-    for file in Path(path).iterdir():
-        if file.is_file():
-            if file.suffix in ('.mp4', '.avi', '.mkv'):
-                file.rename(f'{file.parent}/video/{file.name}')
-            elif file.suffix in ('.jpg', '.jpeg', '.png', '.gif'):
-                file.rename(f'{file.parent}/image/{file.name}')
-            elif file.suffix in ('.txt', '.doc', '.docx', '.pdf'):
-                file.rename(f'{file.parent}/text/{file.name}')
-            else:
-                file.rename(f'{file.parent}/other/{file.name}')
+def convert(file: str | Path) -> None:
+    with open(file, 'r', encoding='utf-8') as f:
+        data = f.readlines()
+    data = [i.strip() for i in data]
+    data = [i.split(' ') for i in data]
+    data = {i[0].capitalize(): int(i[1]) for i in data}
+    with open(file, 'w') as f:
+        json.dump(data, f)
 
 
 if __name__ == '__main__':
-    sort_files('C:/Users/user/Desktop/Seminar_8/Task_1_1')
+    convert('C:\\Users\\max16\\PycharmProjects\\seminarGB\\venv\\python_again\\venv\\Seminar_7\\result.txt')
