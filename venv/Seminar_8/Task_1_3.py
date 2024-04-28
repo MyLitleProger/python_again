@@ -7,32 +7,21 @@ from pathlib import Path
 import json
 
 
-def save_csv(file: Path) -> None:
-    """
-    Конвертирует json в csv путем перезаписи данных.
-    :param file:
-    :return:
-    """
-    # Stop if file does not exist
-    if not file.exists():
-        return
+def json_to_csv(file: Path) -> None:
 
-    # Load json data
     with open(file, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    # Convert data to list of dicts
     list_rows = []
-    for key, value in data.items():
-        for user in value:
-            list_rows.append({'id': key, 'level': user[1], 'name': user[2]})
+    for lvl, id_name_dict in data.items():
+        for u_id, name in id_name_dict.items():
+            list_rows.append({'level': int(lvl), 'id': int(u_id), 'name': name})
 
-    # Save data as csv
-    with open(f'{file.stem}.csv', 'w', newline='', encoding='utf-8') as f:
-        csv_writer = csv.DictWriter(f, fieldnames=['level', 'id', 'name'], delimiter=';')
+    with open(file.with_suffix('.csv'), 'w', encoding='utf-8') as f:
+        csv_writer = csv.DictWriter(f, fieldnames=['level', 'id', 'name'], dialect='excel-tab')
         csv_writer.writeheader()
         csv_writer.writerows(list_rows)
 
 
 if __name__ == '__main__':
-    save_csv(Path('users.json'))
+    json_to_csv(Path('users.json'))
