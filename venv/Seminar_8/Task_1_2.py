@@ -5,19 +5,6 @@
 Идентификатор пользователя выступает ключом для имени.
 Убедитесь, что все идентификаторы уникальны независимо от уровня доступа.
 При перезапуске функции уже записанные в файл данные должны сохраняться.
-
-Пример:
-
-{
-    "id": 1,
-    "name": "John",
-    "access_level": 1
-},
-{
-    "id": 2,
-    "name": "Jane",
-    "access_level": 2
-}
 """
 
 from pathlib import Path
@@ -25,34 +12,27 @@ import json
 
 
 def set_users(file: Path) -> None:
-    if not file.exists():
-        with open(file, 'w', encoding='utf-8') as f:
-            json.dump({}, f)
-
-    with open(file, 'r', encoding='utf-8') as f:
-        users = json.load(f)
+    u_ids = set()
+    if not file.is_file():
+        # data = {i: {} for i in range(1, 7 + 1)}
+        data = {str(i): {} for i in range(1, 7 + 1)}
+        # pass
+    else:
+        with open(file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        for value in data.values():
+            u_ids.update(value.keys())
 
     while True:
-        _name = input('Enter name: ')
-        if _name == 'stop':
+        name = input('Введите имя: ')
+        if not name:
             break
-
-        _id = input('Enter id: ')
-
-        try:
-            _access_level = int(input('Enter access level: '))
-        except ValueError:
-            print('Access level must be integer')
-            continue
-
-        if _id in users:
-            print('This id is already taken')
-            continue
-
-        users = {'id': _id, 'name': _name, 'access_level': _access_level}
-
-        with open(file, 'w', encoding='utf-8') as f:
-            json.dump(users, f)
+        u_id = input('Введите id: ')
+        lvl = input('Введите уровень доступа: ')
+        if ~ (u_id in u_ids and data[lvl].get(u_id) is None):
+            data[lvl].update({u_id: name})
+            with open(file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
 
 
 if __name__ == '__main__':
